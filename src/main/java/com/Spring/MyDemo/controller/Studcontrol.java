@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by melayer on 13/9/17.
@@ -81,5 +82,16 @@ public class Studcontrol {
                 return "Record Updated";
     }
 
+    @GetMapping(value = "/joinquery")
+        List<Map<String,Object>> join(){
+        List<Map<String,Object>> list=studentimpl.joinquery();
+        return list;
+            }
+
+    @GetMapping(value = "/innerjoin")
+    List<Map<String,Object>> inner(){
+        List<Map<String,Object>> list=studentimpl.innerjoin();
+        return list;
+    }
 
 }

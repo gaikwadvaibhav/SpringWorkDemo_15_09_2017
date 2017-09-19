@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by melayer on 13/9/17.
@@ -56,6 +57,20 @@ public class StudImpl implements Repo {
     public void updatedata() {
         String sql2="update mytab set name='VaibhavGaikwad' where id=3";
         jdbcTemplate.update(sql2);
+    }
+
+    @Override
+    public List<Map<String, Object>> joinquery() {
+        String sqlquery="select mytab.id, mytab.name, mytab.imgPath, demotab.city, demotab.pin  from mytab join demotab on mytab.id=demotab.id";
+        List<Map<String, Object>> li=jdbcTemplate.queryForList(sqlquery);
+        return li;
+    }
+
+    @Override
+    public List<Map<String, Object>> innerjoin() {
+        String sqlinner="select mytab.id, mytab.name, demotab.city  from mytab inner join demotab on mytab.id=demotab.id";
+        List<Map<String,Object>> list=jdbcTemplate.queryForList(sqlinner);
+        return list;
     }
 
 
