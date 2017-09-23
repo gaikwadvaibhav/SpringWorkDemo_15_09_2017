@@ -1,6 +1,7 @@
 package com.Spring.MyDemo.repo;
 
 import com.Spring.MyDemo.model.Student;
+import com.Spring.MyDemo.model.StudentNew;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * Created by melayer on 13/9/17.
  */
-public interface Repo {
+public interface StudentRepo {
 
     Student getdata();
 
@@ -20,9 +21,14 @@ public interface Repo {
 
     void updatedata();
 
-    List<Map<String,Object>>  joinquery();
+    List<Map<String,Object>> joinquery();
 
-    List<Map<String,Object>>  innerjoin();
+    List<Map<String,Object>> innerjoin();
+
+    void insertStudData(StudentNew sn);
+
+
+
 
 
 

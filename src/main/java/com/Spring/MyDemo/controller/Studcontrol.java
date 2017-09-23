@@ -1,13 +1,13 @@
 package com.Spring.MyDemo.controller;
 
+import com.Spring.MyDemo.impl.DeptImpl;
 import com.Spring.MyDemo.impl.StudImpl;
+import com.Spring.MyDemo.model.DeptModel;
 import com.Spring.MyDemo.model.Student;
+import com.Spring.MyDemo.model.StudentNew;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -25,6 +25,9 @@ public class Studcontrol {
     private StudImpl studentimpl;
 
     @Autowired
+      DeptImpl deptimpl;
+
+      @Autowired
     public void setStudentimpl(StudImpl studentimpl) {
         this.studentimpl = studentimpl;
     }
@@ -94,4 +97,10 @@ public class Studcontrol {
         return list;
     }
 
+    @PostMapping(value = "/insertStud")
+    String getinsertdb(@RequestBody StudentNew sn){
+        studentimpl.insertStudData(sn);
+        deptimpl.insertDeptData(sn);
+        return "Data Inserted in Join Student";
+    }
 }

@@ -1,8 +1,11 @@
 package com.Spring.MyDemo.impl;
 
+import com.Spring.MyDemo.model.DeptModel;
 import com.Spring.MyDemo.model.Student;
-import com.Spring.MyDemo.repo.Repo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Spring.MyDemo.model.StudentNew;
+import com.Spring.MyDemo.repo.DeptRepo;
+import com.Spring.MyDemo.repo.StudentRepo;
+ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,7 @@ import java.util.Map;
  * Created by melayer on 13/9/17.
  */
 @Service
-public class StudImpl implements Repo {
+public class StudImpl implements StudentRepo  {
 
     @Override
     public Student getdata() {
@@ -73,5 +76,10 @@ public class StudImpl implements Repo {
         return list;
     }
 
+    public void insertStudData(StudentNew s) {
+        String sqlStud="insert into student values(?,?,?)";
+        jdbcTemplate.update(sqlStud, new  Object[]{s.getId(),s.getName(),s.getCity()});
+    }
 
 }
+
